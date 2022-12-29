@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+
+    <button class="clickMe">Click Me!</button>
+
+    <script src="./cf.js"></script>
+    <script src="./ways-to-make-a-function.js"></script>
+    <script>
+        // console.log("it works!");
+        // (function (age) {
+        //     console.log('Running the Anon function');
+        //     return `Your are cool and ${age}`;
+        //     // })(age);
+        // })();
+
+        // const wes = {
+        //     name: "Wes Bos",
+        //     sayHi: function () {
+        //         console.log("Hey wes!");
+        //         return "Hey Wes!";
+        //     },
+        // };
+
+        // const wes = {
+        //     name: "Wes Bos",
+        //     // Method!
+        //     sayHi: function sayHi() {
+        //         // console.log("Hey Wes!");
+        //         console.log(this);
+        //         return "Hey Wes!";
+        //     },
+        //     //Short hand Method
+        //     yellHi() {
+        //         console.log("HEY WESSSSS");
+        //     },
+        //     // Arrow function
+        //     whisperHi: () => {
+        //         console.log('Hi wes im a mouse');
+        //     }
+        // };
+
+        const wes = {
+            name: "Wes Blue",
+            // Method!
+            sayHi: function () {
+                console.log(`Hey ${this.name}`);
+                console.log("Hey wes!");
+                return "Hey Wes!";
+            },
+        };
+
+        const button = document.querySelector(".clickMe");
+        // console.log(button);
+        button.addEventListener("click", wes.sayHi);
+
+        function handleClick() {
+            console.log("Great clicking!!");
+        }
+        button.addEventListener("click", handleClick);
+        button.addEventListener("click", function () {
+            console.log("nice Job!");
+        });
+
+        setTimeout(wes.sayHi, 1000);
+        // setTimeout(function () {
+        //     console.log("Done Time to Eat");
+        // }, 2000);
+
+        setTimeout(() => {
+            console.log("Done Time to Eat");
+        }, 2000);
+    </script>
+</body>
+
+</html>
