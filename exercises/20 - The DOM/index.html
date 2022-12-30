@@ -7,11 +7,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../base.css">
-    <script src="./the-dom.js"></script>
+    <style>
+        h2 span {
+            display: none
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+
+        img {
+            transition: all 0.2s;
+        }
+
+        .round {
+            border-radius: 50%;
+            transform: rotate(1turn) scale(2);
+        }
+    </style>
 </head>
 
 <body>
-    <h2 id="wes" class="blue">Sub Div</h1>
+    <div class="items">
+        <div class="item">
+            <h1>How are you?</h1>
+        </div>
+        <p>Hi I'm a item</p>
+        <div>
+            <h2>Sub Div</h2>
+            <p>Hi I'm a item</p>
+
+        </div>
+        <img class="custom nice cool" data-name="blue" data-last="wes" src="https://bom.so/usIhjx" />
+        <img class="custom nice cool" data-name="suns" src="https://bom.so/usIhjx" />
+        <img class="custom nice cool" data-name="fluer" src="https://bom.so/usIhjx" />
+        <p>Hi I'm a item</p>
+        <p>Hi I'm a item</p>
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>four</li>
+            <li>five</li>
+        </ul>
+        <p class="wes">I am Blue, I <em>love</em> to bbq <strong>Make websites!</strong></p>
+    </div>
+
+    <script src="./the-dom.js"></script>
+    <script src="./creating.js"></script>
+    <script src="./creating-with-strings.js"></script>
+    <script src="./traversing.js"></script>
 </body>
 
 </html>
