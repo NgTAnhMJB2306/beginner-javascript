@@ -54,3 +54,13 @@ function isCool(name) {
 for (var i = 0; i < 10; i++) {
     console.log(i);
 }
+
+const dog = 'snickers';
+function logDog() {
+    console.log(dog);
+}
+function go() {
+    const dog = 'sunny';
+    logDog('Rufus');
+}
+go();
