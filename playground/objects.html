@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+
+<body>
+    <input type="text" name="first" value="blue">
+
+    <script>
+        // Create and accessing properties
+        const age = 23;
+        const person = new Object({
+            name: "wes",
+            propertyToCheck: "NEVER",
+            age,
+            "cool-dude": true,
+            "really cool": false,
+            "777": true,
+            dog: "snickers",
+            clothing: {
+                shirts: 10,
+                pants: 2
+            },
+            sayHello: function (greeting = "Hey") {
+                return `${greeting} ${this.name}`;
+            },
+            sneeze: () => {
+                console.log("AHHHH CHOOO", this);
+            }
+        });
+        person.job = 'Web Developer';
+        person.age = 50;
+
+        wes = {
+            name: 'Westopher',
+            age: 12,
+            job: 'Web Master'
+        }
+
+        console.log(person);
+        console.log(wes);
+
+        const wesFroze = Object.freeze(wes);
+        console.log(wesFroze);
+
+        console.log(wes.age);
+        console.log(wes["age"]);
+
+        // const propertyToCheck = prompt("What do you want to check?");
+        // console.log(propertyToCheck);
+        // console.log(wes[propertyToCheck]);
+        // console.log(wes.propertyToCheck);
+
+        // wes.jobs ? wes.jobs.side : 'Jobs doesn't exist`;
+        // wes?.jobs?.side => undefined
+
+        if (wes && wes.jobs && wes.jobs.first) {
+        }
+
+        const nameInput = document.querySelector('[name="first"]');
+        const name = nameInput ? nameInput.value : '';
+
+        // delete a prop from an object
+        console.log(delete wes.job);
+
+        // methods
+
+
+        // object references vs values
+        let name1 = 'wes';
+        let name2 = 'wes';
+        console.log(name1 === name2);
+        name1 = 'scott';
+        console.log(name1 === name2);
+        name1 = name2;
+        console.log(name1 === name2);
+
+        const person1 = {
+            first: "wes",
+            last: "bos"
+        };
+        const person2 = {
+            first: "wes",
+            last: "bos"
+        };
+        const person3 = person1;
+        person3.first = 'Larry';
+        console.log(person3.first);
+        console.log(person1.first);
+        console.log(person1);
+        console.log(person2);
+        console.log(person3);
+
+        // spread operator: copy something
+        const person4 = { ...person };
+        console.log(person4);
+    </script>
+</body>
+
+</html>
