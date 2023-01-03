@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Statements</title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <img width="200" src="./turtle.png" alt="Turt" class="turt">
+
+    <style>
+        .turt {
+            position: relative;
+            --x: 10px;
+            --y: 10px;
+            transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotate));
+            background-color: red;
+            transition: transform 0.2s;
+            --rotateX: 0;
+            --rotate: 0;
+            transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotateX)) rotate(var(--rotate));
+        }
+    </style>
+    <script>
+        const turtle = document.querySelector(".turt");
+        console.log(turtle);
+
+        let x = 0;
+        let y = 0;
+        let speed = 5;
+        let flipped = false;
+
+        function handleKeyDown(event) {
+            if (!event.key.includes("Arrow")) { return; }
+            // console.log(event);
+        }
+
+        switch (event.key) {
+            case 'ArrowUp':
+                y = y - 1;
+                break;
+            case 'ArrowDown':
+                y = y + 1;
+                break;
+            case "ArrowLeft":
+                x = x - 1;
+                break;
+            case "ArrowRight":
+                x = x + 1;
+                break;
+            default:
+                console.log("That is not a valid move");
+                break;
+        }
+        console.log(x, y);
+        window.addEventListener('keydown', handleKeyDown);
+        turtle.setAttribute('style', `
+            --rotateX: ${flipped ? '180deg' : '0'};
+            --x: ${x * speed}px;
+            --y: ${y * speed}px;
+            --rotate: ${rotate}deg;
+        `);
+    </script>
+</body>
+
+</html>

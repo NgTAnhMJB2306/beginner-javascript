@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>If Statements</title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <script>
+        if (10 > 2) {
+            console.log('Yep');
+        }
+        10 !== '10' // returns true
+        10 != '10' // returns false
+        if (name === "wes" || name === "scott") {
+            console.log("Cool name!");
+        }
+        if (name === 'wes' && last === 'bos') {
+            console.log("cool name");
+        }
+        if (name === 'scott' || (name === 'wes' && last === 'bos')) {
+            console.log('Cool name!');
+        }
+        const name = 'wes';
+        if ('awesome'.includes(name)) {
+            console.log('SUPER COOL AWESOME NAME');
+        }
+        const isAwesomeName = 'awesome'.includes(name);
+        if (isAwesomeName) {
+            console.log('SUPER COOL NAME');
+        }
+        function nameIsAwesome(name) {
+            return 'awesome'.includes(name);
+        }
+        if (nameIsAwesome('wes')) {
+            console.log('COOL NAME WES');
+        }
+        const dog = 'snickers';
+        if (dog) {
+            console.log('You have a dog');
+        } else {
+            console.log("You don't have a dog");
+        }
+        const dogs = '';
+        // Truthy or Falsy values
+        const score = 0;
+        if (score) {
+            console.log('There is a score already');
+        } else {
+            console.log('No score yet');
+        }
+        let scores = [1, 3, 6];
+        let scoress = [];
+        let scoresss = {};
+        Object.keys({}).length
+
+        const values = [[], [], -10, 1, 0, "", "full string", " ", undefined, NaN, null];
+        console.group('truthy or falsy values');
+        values.forEach(value => {
+            console.log(value);
+        })
+        console.groupEnd('');
+        if (value) {
+            console.log(value, 'is truthy');
+        } else {
+            console.log(value, 'is falsy');
+        }
+
+        const isCool = true;
+        if (isCool) {
+        } else {
+            console.log('You are not cool');
+        }
+
+        if (!isCool) {
+            console.log('You are not cool');
+        }
+        const middle = "";
+        // !middle => true
+        // !!middle => false
+
+        // Ternary
+        const count = 2;
+        let word;
+        if (count === 1) {
+            word = 'item';
+        } else {
+            word = 'items';
+        }
+        const sentence = `You have ${count} ${word} in your cart`;
+        console.log(sentence);
+
+        const word1 = count === 1 ? 'item' : 'items';
+
+        const count1 = 0;
+        const word2 = count === 1 ? 'item' : 'items';
+        // const sentence1 = `You have ${count} ${word} in your cart`;
+        const sentence1 = `You have ${count} item${count === 1 ? '' : 's'} in your cart`;
+        console.log(sentence);
+
+        isAdmin ? showAdminBar() : null;
+
+        function check1() {
+            console.log('Running check 1');
+            return true;
+        }
+        function check2() {
+            console.log('Running check 2');
+            return true;
+        }
+        function check3() {
+            console.log('Running check 3');
+            return true;
+        }
+        if (check1() && check2() && check3()) {
+            console.log('all checks passed');
+        }
+
+        function check2() {
+            return false;
+        }
+        if (check1() && check2() && check3()) {
+            console.log('all checks passed');
+        } else {
+            console.log('Some checks failed');
+        }
+
+        // Blockless If Statements
+        if (isAdmin) {
+            showAdminBar();
+        }
+
+        if (isAdmin) showAdminBar();
+
+    </script>
+</body>
+
+</html>

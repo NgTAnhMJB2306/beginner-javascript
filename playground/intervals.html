@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervals & Times</title>
+</head>
+
+<body>
+    <script>
+        // Timers
+        function buzzer() {
+            console.log("ENNNNGGGG");
+        }
+        console.log("Starting");
+        setTimeout(buzzer, 500);
+        console.log("Finishing!");
+
+        // Intervals
+        // setInterval(buzzer, 100);
+        function setImmediateInterval(funcToRun, ms) {
+            // right away call that function
+            funcToRun();
+            // run a regular interval
+            setInterval(funcToRun, ms);
+        }
+        setImmediateInterval(buzzer, 2000);
+
+        function sayHi() {
+            console.log("Heeeyy");
+        }
+        setImmediateInterval(sayHi, 200);
+
+        function destroy() {
+            document.body.innerHTML = `<p>DESTROYED</p>`;
+        }
+        setTimeout(destroy, 2000);
+
+        const bombTimer = setTimeout(destroy, 5000);
+        console.log(typeof bombTimer);
+
+        window.addEventListener("click", function () {
+            console.log("You clicked! You saved the world!");
+            // How do you stop the timer from running?!
+            clearTimeout(bombTimer);
+        });
+        const poopInterval = setInterval(function () {
+            console.log(`💩`);
+            console.log("Hehehe");
+        }, 10);
+        setTimeout(function () {
+            clearInterval(poopInterval);
+        }, 3000);
+        setTimeout(function () {
+            clearInterval(sayHi);
+        }, 3000);
+        setTimeout(function () {
+            clearInterval(buzzer);
+        }, 3000);
+    </script>
+</body>
+
+</html>
