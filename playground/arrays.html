@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+
+
+    <script>
+        const name = [];
+        // const names = new Array();
+        const names = ['wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers'];
+        // Check whether something is array
+        console.log(Array.isArray(names));
+        console.log(names[1]);
+        console.log(names[0]);
+        console.log(names.length);
+        console.log(names[names.length - 1]);
+
+        // Mutative Method
+        // Mutation method - do change the original data
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const numbersBackwards = numbers.reverse();
+        console.log(numbersBackwards);
+        console.log(numbers);
+        const pizzaSlice = numbers.slice(2, 4);
+        console.log(pizzaSlice);
+
+        // const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // numberss.reverse();
+        // console.log(numberss);
+
+        const numbersReversed = [...numbers].reverse();
+        console.log(numbersReversed);
+        console.log(numbers);
+
+        names.push('lux');
+        console.log(names);
+        // const names2 = [...names, 'lux'];
+
+        names.unshift('poppy');
+        console.log(names);
+        // const names3 = ['poppy', ...names];
+
+        // splice vs slice
+        console.log(numbers);
+        numbers.splice(3, 2);
+        console.log(numbers);
+
+        const bikes = ["bianchi", "miele", "panasonic", "miyata"];
+        const newBikes = [
+            ...bikes.slice(0, 2),
+            "benotto",
+            ...bikes.slice(2)
+        ];
+        console.log(newBikes);
+
+        const newBikes2 = [
+            ...newBikes.slice(0, 3),
+            ...newBikes.slice(4)
+        ];
+        console.log(newBikes2);
+
+        const comments = [
+            { text: "Cool Beans", id: 123 },
+            { text: "Love this", id: 133 },
+            { text: "Neato", id: 233 },
+            { text: "good bikes", id: 333 },
+            { text: "so good", id: 433 }
+        ];
+        console.log(comments);
+
+        // findIndex()
+
+        // const kaitIndex = names.findIndex('kait');
+        // console.log(kaitIndex); // error kait is not a function
+
+        const kaitIndex = names.findIndex(name => {
+            // if (name === 'kait') {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+
+            // if (name === 'kait') {
+            //     return true;
+            // }
+            // return false;
+
+            return name === 'kait';
+        });
+
+        // const kaitIndex = names.findIndex(name => name === 'kait');
+
+        console.log(kaitIndex);
+        console.log(names[kaitIndex]);
+
+        const newNamesWithOutKait = [
+            // get everything up to the kait index
+            ...names.slice(0, kaitIndex),
+            // everything after
+            ...names.slice(kaitIndex + 1)
+        ];
+        console.log(newNamesWithOutKait);
+
+        // flat()
+        const newNames999 = newNamesWithOutKait.flat();
+        console.log(newNames999);
+
+        function deleteComment(id, comments) {
+            // first find the index of the item in the array
+            const commentIndex = comments.findIndex(comment => comment.id === id);
+            // make a new array without that item in it
+            return [
+                ...comments.slice(0, commentIndex),
+                ...comments.slice(commentIndex + 1)
+            ];
+            // return our new array
+        }; // log: deleteComment(233, comments)
+
+        // Array cardio - static methods
+        const numbers1 = [1, 2, 3, 4, 5];
+        console.log(numbers1);
+        console.log(numbers1.push(20));
+        console.log(numbers1.pop());
+        // Array.of('wes', 'kait');
+        function createRange(start, end) {
+            const range = Array.from({ length: end - start + 1 },
+                function (item, index) {
+                    return index + start;
+                    // function () { return 'wes' };
+                });
+            return range;
+        }
+        const myRange = createRange(3, 7);
+        console.log(myRange);
+        console.log(Array.isArray(myRange));
+
+        // Object static methods
+        const meats = {
+            beyond: 10,
+            beef: 5,
+            pork: 7,
+        };
+
+        // keys() is going to give us an array of all the object keys
+        // values() will give us an array of all the values
+        // entries() is going to give us an array where each item
+        console.log(Object.entries(meats));
+        console.log(Object.keys(meats));
+        console.log(Object.values(meats));
+
+        Object.values(meats).forEach(qty => {
+            console.log(qty);
+        });
+        Object.keys(meats).forEach(qty => {
+            console.log(qty);
+        });
+        Object.entries(meats).forEach(([meat, qty]) => {
+            // Object.entries(meats).forEach(([key, value]) => {
+            // Object.entries(meats).forEach((entry) => {
+            // const key = entry[0];
+            // const value = entry[1];
+            // const [key, value] = entry;
+            // console.log(key, value);
+            // console.log(entry);
+            console.log(meat, qty);
+        });
+
+    </script>
+</body>
+
+</html>

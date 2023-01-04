@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+</head>
+
+<body>
+    <ul class="prizes"></ul>
+
+    <script>
+        // Maps
+        const myMap = new Map();
+        myMap.set('name', 'wes');
+        myMap.age = 100;
+        myMap.set('age', 100);
+        console.log(myMap);
+
+        const person1 = {
+            name: 'blue',
+            age: 23,
+        };
+
+        myMap.set(person1, 'Really cool');
+        console.log(myMap);
+
+        console.log(myMap.get(person1));
+
+        const score = 100;
+        const prizes = new Map();
+        prizes.set(100, 'Bear');
+        prizes.set(200, 'Duck');
+        prizes.set(300, 'Car');
+        console.log(`you win a ${prizes.get(score)}`);
+
+        // select that ul
+        const ul = document.querySelector('prizes');
+
+        prizes.forEach(entry => {
+            console.log(entry);
+        })
+
+        for (const prize of prizes) {
+            console.log(prize);
+            console.log(prize[0], prize[1]);
+        }
+
+        for (const [points, prize] of prizes) {
+            console.log(points, prize);
+        }
+
+        for (const [key, value] of prizes) {
+            console.log(key, value);
+        }
+
+        // for (const [points, prize] of prizes) {
+        //     const li = `<li>${points} - ${prize}</li>`;
+        //     ul.insertAdjacentHTML('beforeend', li);
+        // }
+
+
+        console.log(new Map([[1, 2], [3, 4]]));
+        console.log(new Map([['name', 'wes'], ['age', '49']]));
+        myMap.delete('name');
+        console.log(myMap);
+
+        // JSON
+        const person = {
+            name: 'wes',
+            age: 100
+        }
+        JSON.parse(`{ "name": "wes", "age": "100" }`);
+        JSON.stringify(myMap); // error
+    </script>
+</body>
+
+</html>
