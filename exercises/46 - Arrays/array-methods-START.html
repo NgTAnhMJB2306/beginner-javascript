@@ -99,6 +99,8 @@
             tenderloin: 80.00,
         };
 
+        const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+
         // find the first rating that talks about a burger with find()
         const util = {
             findBurgRating: function (singleFeedback) {
@@ -171,7 +173,10 @@
         console.log(numbersSorted);
 
         // sort the order totals from most expensive to least with sort()
-
+        function numberSort(a, b) {
+            return b - a;
+        }
+        console.log(orderTotals.sort(numberSort));
 
         // Sort the prices with sort()
         console.log(toppings.sort());

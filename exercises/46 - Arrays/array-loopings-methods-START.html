@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Looping and Iterating</title>
+</head>
+
+<body>
+
+    <script>
+        const toppings = ['Mushrooms', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce',
+            'Avocado', 'Chilles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+
+        const people = [
+            {
+                birthday: "April 22, 1993",
+                names: {
+                    first: "Keith",
+                    last: "Buckley",
+                },
+            },
+            {
+                birthday: "January 3, 1975",
+                names: {
+                    first: "Larry",
+                    last: "Heep",
+                },
+            },
+            {
+                birthday: "February 12, 1944",
+                names: {
+                    first: "Linda",
+                    last: "Bermeer",
+                },
+            },
+        ];
+
+        const students = [
+            {
+                id: "11ce",
+                first_name: "Dall",
+                last_name: "Puckring",
+            },
+            {
+                id: "2958",
+                first_name: "Margarete",
+                last_name: "Brandi",
+            },
+            {
+                id: "565a",
+                first_name: "Bendicty",
+                last_name: "Woodage",
+            },
+            {
+                id: "3a16",
+                first_name: "Micki",
+                last_name: "Mattes",
+            },
+            {
+                id: "f396",
+                first_name: "Flory",
+                last_name: "Gladeche",
+            },
+            {
+                id: "de5f",
+                first_name: "Jamill",
+                last_name: "Emilien",
+            },
+            {
+                id: "54cb",
+                first_name: "Brett",
+                last_name: "Aizikowitz",
+            },
+            {
+                id: "9135",
+                first_name: "Lorry",
+                last_name: "Smallman",
+            },
+            {
+                id: "978f",
+                first_name: "Gilly",
+                last_name: "Flott",
+            },
+        ];
+
+        // function logTopping(topping) {
+        //     console.log(topping);
+        // }
+
+        function logTopping(topping, index, array) {
+            console.log(topping, index, array);
+        }
+
+        toppings.forEach((topping, index, originalArray) => {
+            // console.log(topping);
+            // console.log('--------🍕-----');
+            const nextTopping = originalArray[index + 1];
+            const prevTopping = originalArray[index - 1];
+
+            // if (nextTopping) {
+            //     console.log(nextTopping);
+            // }
+            prevTopping ? console.log(prevTopping) : null;
+            nextTopping ? console.log(nextTopping) : null;
+
+            index === originalArray.length - 1
+                ? console.log("Goodbye")
+                : console.log('Getting the next topping');
+
+            const result = toppings.forEach(logTopping);
+        });
+
+        // Looping and Iterating - Mapping
+        const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
+
+        const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+
+        function addArms(face) {
+            return `👋${face} 👋`;
+        }
+        const toys = faces.map(addArms);
+        console.log(toys);
+
+        // function capitalize(word) {
+        //     return `${word[0].toUppercase()}${word.slice(1)}`;
+        // }
+        function capitalize(word) {
+            return `${word[0].toUpperCase()}${word.slice(1)}`;
+        }
+
+        function bosify(name) {
+            return `${name} Bos`;
+        }
+        const fullNames = ['wes', 'kait', 'poppy']
+            .map(capitalize)
+            .map(bosify);
+        // (name => `${name} bos`);
+        console.log(fullNames);
+
+        const orderTotalsWithTax = orderTotals.map(total => total * 1.13);
+        console.log(orderTotalsWithTax);
+
+        function attachBody(face, body) {
+            return `
+                ${face}
+            　　　　　${body.repeat(3)}
+            　　　　 ${Array(3).fill(body).join(' ')}
+            　　　👇🏽　 ${body.repeat(2)}　👇🏽
+                ${Array(2).fill(body).join('   ')}
+                ${Array(2).fill(body).join('   ')}
+            　　　　　👢　　👢
+            `
+        }
+        faces.map(face => attachBody(face, '🍟')).forEach(body => console.log(body));
+
+        const cleanPeople = people.map(function (person) {
+            // const birthday = new Date(person.birthday);
+            const birthday = new Date(person.birthday).getTime();
+            const now = Date.now();
+            // const age = (now - birthday) / 31536000000;
+            const age = Math.floor((now - birthday) / 31536000000);
+            console.log(age);
+            return {
+                age: age,
+                name: `${person.names.first} ${person.names.last}`,
+            }
+        })
+        console.table(cleanPeople);
+
+        // Looping and Iterating - Filter, Find and Higher-Order Functions
+        const over40 = cleanPeople.filter(person => person.age > 40);
+        console.table(over40);
+
+        // .find() works the exact same way except that find only finds one item in the array and returns it whereas filter will always return to you all of the items that match.
+        // .filter() will always return an array
+        // .find() will always return the item that you want.
+        function isStudent(student) {
+            return student.id === '565a';
+        };
+        function findById(id) {
+            return function isStudent(student) {
+                return student.id === id;
+            }
+        };
+        function findByProp(prop, propWeAreLookingFor) {
+            return function isStudent(student) {
+                return student[prop] === propWeAreLookingFor;
+            }
+        };
+        const student = students.find(findById('565a'));
+        console.log(student);
+
+        const student1 = students.filter(isStudent);
+        console.log(student1);
+
+        const student2 = students.find(findByProp('id', '565a'));
+        const student3 = students.find(findByProp('first_name', 'Micki'));
+        console.log(student2);
+        console.log(student3);
+    </script>
+</body>
+
+</html>
