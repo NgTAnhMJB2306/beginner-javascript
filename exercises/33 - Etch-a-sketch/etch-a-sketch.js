@@ -4,116 +4,78 @@ console.log("it works");
 const canvas = document.querySelector('#etch-a-sketch');
 const ctx = canvas.getContext('2d');
 const shakebutton = document.querySelector('.shake');
+const MOVE_AMOUNT = 50;
+// Setup our canvas for drawing
+// make a variable called height and width from the same properties on our canvas.
+const { width, height } = canvas;
+
+let x = Math.floor(Math.random() * width);
+let y = Math.floor(Math.random() * height);
+// create random x and y starting points on the canvas
+
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.lineWidth = 10;
-ctx.moveTo(200, 200);
-ctx.lineTo(200, 200);
-ctx.stroke();
-// const width = canvas.width;
-// const height = canvas.height;
+ctx.lineWidth = MOVE_AMOUNT;
 
-// set up our canvas for drawing
-const { width, height } = canvas;
-let x = Math.floor(Math.random() * width);
-ctx.beginPath();
-ctx.moveTo(x, 200);
-ctx.lineTo(x, 200);
-ctx.stroke();
-let y = Math.floor(Math.random() * height);
+let hue = 0;
+ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+ctx.beginPath(); // start the drawing
 ctx.moveTo(x, y);
 ctx.lineTo(x, y);
-console.log(width, height);
+ctx.stroke();
 
 // write a draw function
 function draw({ key }) {
-    const hue = 0;
-    // ctx.strokeStyle = `hsl(100, 100%, 50%)`;
-    // ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    // increment the hue
+    hue += 1;
+    console.log(hue);
     ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-}
-
-
-function draw(options) {
-    console.log(options.key);
-}
-function draw(options) {
-    console.log(options.key);
-}
-
-function draw({ key }) {
     console.log(key);
     // start the path
     ctx.beginPath();
     ctx.moveTo(x, y);
     // move our x and y values depending on what the user did
-    x = x - 10;
-    y = y - 10;
-    ctx.lineto(x, y);
-    ctx.stroke();
-    const MOVE_AMOUNT = 10;
-    x -= MOVE_AMOUNT;
-    y -= MOVE_AMOUNT;
-    // if (key == 'ArrowUp') {
-    // } else if (key == 'OtherValue') {
-    // }
     switch (key) {
-        case "ArrowUp":
+        case 'ArrowUp':
             y -= MOVE_AMOUNT;
             break;
-        case "ArrowRight":
+        case 'ArrowRight':
             x += MOVE_AMOUNT;
             break;
-        case "ArrowDown":
+        case 'ArrowDown':
             y += MOVE_AMOUNT;
             break;
-        case "ArrowLeft":
+        case 'ArrowLeft':
             x -= MOVE_AMOUNT;
             break;
         default:
             break;
     }
+    ctx.lineTo(x, y);
+    ctx.stroke();
 }
 
 // write a handler for the keys
-function handleKey() {
-    console.log("HANDLING KEY");
-}
-window.addEventListener('keydown', handleKey);
 function handleKey(e) {
-    // e.preventDefault();
-    console.log(e.key);
-    console.log("HANDLING KEY");
-}
-
-if (e.key.includes("Arrow")) {
-    e.preventDefault();
-    console.log(e.key);
-    console.log("HANDLING KEY");
-}
-
-function functionHandleKey(e) {
     if (e.key.includes('Arrow')) {
         e.preventDefault();
         draw({ key: e.key });
-        console.log(e.key);
-        console.log('HANDLING KEY');
     }
 }
-
-// clear or shake function
+// clear /shke function
 function clearCanvas() {
     canvas.classList.add('shake');
-    canvas.addEventListener("animationend", function () {
-        console.log("done the shake!");
-        canvas.classList.remove("shake");
-    },
+    ctx.clearRect(0, 0, width, height);
+    canvas.addEventListener(
+        'animationend',
+        function () {
+            console.log('Done the shake!');
+            canvas.classList.remove('shake');
+        },
         { once: true }
     );
 }
 
-shakebutton.addEventListener("click", clearCanvas);
-// ctx.clearRect(0, 0, 500, 500);
-ctx.clearRect(0, 0, width, height);
-
 // listen for arrow keys
+window.addEventListener('keydown', handleKey);
+shakebutton.addEventListener('click', clearCanvas);

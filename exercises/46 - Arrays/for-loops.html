@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loops</title>
+</head>
+
+<body>
+    <script>
+        const numbers = [2, 23, 3, 23, 42, 3, 1, 65, 364, 5, 656, 6];
+        for (let i = 0; i < numbers.length; i++) {
+            console.log(numbers[i]);
+        }
+
+        // for of
+        const name = 'Wes Bos';
+        for (const letter of name) {
+            console.log(letter);
+        }
+
+        // for (const number of numbers) {
+        //     console.log(number);
+        // }
+
+        // for in 
+        for (const number in numbers) {
+            console.log(number);
+        }
+        const wes = {
+            name: 'wes',
+            age: 100,
+            cool: true
+        }
+        for (const prop in wes) {
+            console.log(prop);
+        }
+
+        const baseHumanStats = {
+            feet: 2,
+            arms: 2,
+            eyes: 2,
+            head: 1
+        };
+        function Human(name) {
+            this.name = name;
+        }
+        Human.prototype = baseHumanStats;
+        const wes2 = new Human('wes');
+        console.log(Object.entries(wes2));
+        for (const prop in wes2) {
+            console.log(prop);
+        }
+
+        // While and do while loops
+        // let cool = true;
+        // while (cool === true) {
+        //     console.log('You are cool');
+        // }   // Be careful if you run this code because it
+        //  will cause an infinite loop and might crash your computer.
+        let cool = true;
+        let i = 1;
+        while (cool === true) {
+            console.log('You are cool');
+            i++
+            if (i > 100) {
+                cool = false;
+            }
+        }
+
+        // The only different between the do while and the while
+        // loop is that we have a do with a block and then a while
+        // with a condition on the end, like so 👇
+
+        // The do block will run first, and then it will check the
+        // condition after the first run.
+
+        // With the while loop, the condition will always be checked
+        // before the first run.
+    </script>
+</body>
+
+</html>
