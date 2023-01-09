@@ -73,6 +73,10 @@ function Slider(slider) {
     if (!(slider instanceof Element)) {
         throw new Error('No slider passed in');
     }
+    // create some variables for working with the slider
+    this.prev;
+    this.current;
+    this.next;
 
     // select the elements needed for the slider
     this.slides = slider.querySelector('.slides');

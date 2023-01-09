@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind-Call-Apply</title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <p>Hey im in a wrapper</p>
+    </div>
+
+    <script>
+        // bind is a method that lives on all functions
+        // and it says change the this keyword to be equal
+        // to, in this example, a different object.
+        const person = {
+            name: 'Wes Bos',
+            sayHi() {
+                console.log(this);
+                console.log(`hey ${this.name}`);
+                return `hey ${this.name}`;
+            }
+        };
+        console.log("it works");
+        console.log(person.sayHi());
+
+        const jenna = { name: 'Jenna' };
+
+        // const sayHi = person.sayHi.bind(person);
+        // const sayHi = person.sayHi.bind(jenna);
+        const sayHi = person.sayHi.bind({ name: 'Harry' });
+        console.log(sayHi);
+        sayHi();
+
+        // QUERYSELECTOR Example
+        // by calling bind against querySelector, we say that when
+        // the $ function is run, use `document` as the `this` value.
+        // const $ = document.querySelector;
+        const $ = document.querySelector.bind(Document);
+        // console.log($('p')) // Error: Illegal invocation
+        // const wrapper = document.querySelector('.wrapper');
+        // const p = wrapper.querySelector('p');
+        // console.log(p);
+        // console.log(wrapper);
+
+        const lookFor = document.querySelectorAll.bind(document);
+        console.log(lookFor('p'));
+
+        const bill = {
+            total: 1000,
+            calculate: function (taxRate) {
+                console.log(this);
+                return this.total + (this.total * taxRate);
+            },
+            describe(mealType, drinkType, taxRate) {
+                console.log(`Your meal of ${mealType}
+                 with a drink of ${drinkType}
+                 was ${this.calculate(taxRate)}`);
+            }
+        };
+
+        const total = bill.calculate(0.13);
+        const calc = bill.calculate.bind({ total: 500 }, 0.06);
+
+        console.log(calc());
+        const total2 = bill.calculate.call({ total: 500 }, 0.06);
+        console.log(total2);
+
+        const total3 = bill.calculate.apply({ total: 325 }, [0.60]);
+        console.log(total3);
+
+        const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
+        console.log(myMeal);
+        const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
+        console.log(myMeal2);
+
+        // .bind calls a function, which then needs to be called by itself.
+        // .call does the same thing as bind but it will also run the function
+        // for you so you don't have to call it.
+    </script>
+</body>
+
+</html>
