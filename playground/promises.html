@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+
+<body>
+
+    <script>
+        // Promise
+        async function makePizza(toppings = []) {
+            const pizzaPromise = new Promise(function (resolve, reject) {
+                if (toppings.includes('pineapple')) {
+                    reject("Seriously? Get out 🍍");
+                }
+                const amountOfTimeToBake = 500 + (toppings.length * 200);
+                // wait 1 second for the pizza to cook
+                setTimeout(function () {
+                    // when you are ready, you can resolve this promise
+                    resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+                }, amountOfTimeToBake)
+                // if something went wrong, we can reject this promise
+            });
+            return pizzaPromise;
+        }
+        // const pizza = makePizza();
+        // console.log(pizza);
+        // const pepperoniPromise = makePizza(['pepperoni']);
+        // const canadianPromise = makePizza(['pepperoni', 'mushroom', 'onions'])
+        // console.log(pepperoniPromise, canadianPromise);
+
+        // .then() method
+        // pepperoniPromise.then(function (pizza) {
+        //     console.log("Ahh I got it!");
+        //     console.log(pizza);
+        // });
+
+        // console.log('First');
+
+        makePizza(['pepperoni', 'ham'])
+            .then(function (pizza) {
+                console.log(pizza);
+                return makePizza(['ham', 'cheese']);
+            })
+            .then(function (pizza) {
+                console.log(pizza);
+                return makePizza(['hot peppers', 'onion', 'feta']);
+            })
+            .then(function (pizza) {
+                console.log(pizza);
+                return makePizza(['pineapple']);
+            })
+            .then(function (pizza) {
+                console.log(pizza);
+                return makePizza(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
+            })
+            .then(pizza => {
+                console.log('All done! here is your last pizza');
+                console.log(pizza);
+            }).catch(handleError);
+        // console.log('Right after');
+
+        // Promises.all() : To reiterate, Promise.all() will take all of your promises and will only resolve
+        // when all 3 of the sub-promises have been resolved themselves.
+        // const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
+        // const pizzaPromise2 = makePizza(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
+        // const pizzaPromise3 = makePizza(['ham', 'cheese']);
+        // const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+        // dinnerPromise.then(function ([hottie, garbagePail, hamAndCheese]) {
+        //     console.log(hottie, garbagePail, hamAndCheese);
+        // })
+
+        // // Promise.race() : To reiterate, Promise.race() will wait for the first one to finish rendering.
+        // const firstPizzaPromise = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+        // firstPizzaPromise.then(pizza => {
+        //     console.log('You must be hungry, here is the first one ready');
+        //     console.log(pizza);
+        // })
+
+        // Promises - Error Handling
+        makePizza(['cheese', 'pineapple'])
+            .then(pizza => {
+                console.log(pizza);
+            })
+            .catch(handleError)
+
+        function handleError(err) {
+            console.log('Oh noooo!');
+            console.log(err);
+        }
+        const p1 = makePizza(['pep']);
+        const p2 = makePizza(['pineapple']);
+
+        // Promise.allSettled() : Promise.allSettled() will tell you when all the promises are done,
+        // regardless of whether they were rejected or resolved.
+        // const dinnerPromise2 = Promise.all([p1, p2]).catch(handleError);
+        const dinnerPromise2 = Promise.allSettled([p1, p2]).catch(handleError);
+        dinnerPromise2.then(results => {
+            console.log(results);
+        })
+
+        async function makeDinner() {
+            const pizzaPromise1 = await makePizza(['pepperoni']);
+            // console.log(pizzaPromise1);
+            const pizzaPromise2 = await makePizza(['mushrooms']);
+            // console.log(pizzaPromise2);
+            // const pizzas = await Promise.all([pizzaPromise1, pizzaPromise2]);
+            const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
+            // console.log(pizzas);
+            console.log(pep, mush);
+        }
+        makeDinner();
+    </script>
+</body>
+
+</html>
