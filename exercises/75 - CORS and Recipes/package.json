@@ -4,8 +4,15 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
   },
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
 }
