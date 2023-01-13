@@ -1,7 +1,6 @@
 {
   "name": "beginner-javascript",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "sass": "node-sass -w scss/ -o css/ --recursive",
@@ -42,6 +41,8 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "parcel": "^2.8.2"
-  }
+    "parcel": "^2.8.2",
+    "parcel-bundler": "^1.12.5"
+  },
+  "description": ""
 }
