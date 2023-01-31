@@ -1,0 +1,17 @@
+{
+  "name": "dadjokes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jokes.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "parcel jokes.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
